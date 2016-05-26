@@ -43,17 +43,19 @@ def push_csv_todb(f,dbname,table,header = True):
     value = ''
     with open(f, 'rb') as csvfile:
         fileReader = csv.reader(csvfile, delimiter=',', quotechar='|')
+        fileReader_count = csv.reader(csvfile, delimiter=',', quotechar='|')
+        total_row = sum(1 for row in fileReader_count)
         if header : 
             fileReader.next()
+            total_row-=1
         first_row = fileReader.next()
         n_entry = len(first_row)
         if l_schema != n_entry : raise ValueError('The input file does not match the table schema')
         for i in texts:
                 first_row[i]='\''+first_row[i]+'\'' 
         value = add_row_to_sqlValue(first_row,n_entry,value,'(')
+        total_row-=1
         print 'start parsing the file'
-        #total_rows = sum(1 for row in fileReader)
-        total_row=695691
         current_row = 0
         for row in fileReader:
             current_row+=1
