@@ -70,7 +70,9 @@ def push_csv_todb(f,dbname,table,header = True):
         #print insert%(table,value)   
         conn.execute( insert%(table,value) )
         db.commit() 
-
+#f: input csv file
+#db: target database
+#table: target table
 if __name__ == "__main__":
     f=argv[1]
     db=argv[2]
