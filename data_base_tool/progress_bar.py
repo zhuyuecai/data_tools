@@ -6,7 +6,7 @@ import time, sys
 ## A value at 1 or bigger represents 100%
 def update_progress(progress):
     barLength = 10 # Modify this to change the length of the progress bar
-    status = ""
+    status = ''
     if isinstance(progress, int):
         progress = float(progress)
     if not isinstance(progress, float):

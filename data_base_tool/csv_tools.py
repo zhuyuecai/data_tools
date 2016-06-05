@@ -42,12 +42,14 @@ def push_csv_todb(f,dbname,table,header = True):
  
     value = ''
     with open(f, 'rb') as csvfile:
-        fileReader = csv.reader(csvfile, delimiter=',', quotechar='|')
         fileReader_count = csv.reader(csvfile, delimiter=',', quotechar='|')
         total_row = sum(1 for row in fileReader_count)
+        
+        fileReader = csv.reader(open(f, 'rb'), delimiter=',', quotechar='|')
         if header : 
-            fileReader.next()
             total_row-=1
+            next(fileReader)
+            
         first_row = fileReader.next()
         n_entry = len(first_row)
         if l_schema != n_entry : raise ValueError('The input file does not match the table schema')
@@ -56,16 +58,17 @@ def push_csv_todb(f,dbname,table,header = True):
         value = add_row_to_sqlValue(first_row,n_entry,value,'(')
         total_row-=1
         print 'start parsing the file'
-        current_row = 0
+        current_row = 0.0
         for row in fileReader:
             current_row+=1
             progress_bar.update_progress(current_row/total_row)
+            
             for i in texts:
                 row[i]='\''+row[i]+'\'' 
             value = add_row_to_sqlValue(row,n_entry,value)
         print 'finish file parsing'
-        print insert%(table,value)   
-        #conn.execute( insert%(table,value) )
+        #print insert%(table,value)   
+        conn.execute( insert%(table,value) )
         db.commit() 
 
 if __name__ == "__main__":
