@@ -1,0 +1,18 @@
+From File,To File,References,From Entities,To Entities
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_policy_connector.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_form_database_service.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_permission_manager.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_pref_store.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_quota_manager_bridge.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_resource_context.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/jni_dependency_factory.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/net/aw_url_request_context_getter.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/browser/net/init_native_callback.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/android_webview/common/aw_content_client.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/base_paths_android.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/bind.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/files/file_path.h,2,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/location.h,1,1,1
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/logging.h,13,1,4
+/home/winnerzhu/workspace/chrome/src/android_webview/browser/aw_browser_context.cc,/home/winnerzhu/workspace/chrome/src/base/path_service.h,1,1,1
