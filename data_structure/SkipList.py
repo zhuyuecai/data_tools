@@ -1,113 +1,97 @@
 import random
+from astropy.io.fits.convenience import update
 class ListNode:
     def __init__(self,k,v,l):
-        self.next_node = []
+        
         self.k = k 
         self.v = v
+        self.l = l
         self.next_node = [None for i in range(l)]
-        self.pre_node = [None for i in range(l)]
+       
 
     
     
 class SkipList:
-    def __init__(self,k,v):
-        self.next_node = []
-        self.l=0
+    def __init__(self,l = 1000):
+        self.l = 1
         self.__len__ = 0
-        self.head = ListNode(k,v,1)
-        self.next_node.append( self.head)
-		
-		
-		
-    def __helper(self,current,k,l):
-        #print (current.next_node)
-        #print (l)
-        if current.next_node[l] is None:
-            return current
-        elif current.next_node[l].k > k:
-            return current
-        else:
-            return self.__helper(current.next_node[l],k,l)         
-    
-    def __search_by_level(self, k, l):
-        current = self.__helper(self.next_node[l],k,l)
- 
-        return current
-        
+        self.head = ListNode(None,None,l)
+     
+    def __str__(self):
+        re = ''
+        x = self.head
+        re += str(x.k) + ';'
+        while x.next_node[0] is not None:
+            x = x.next_node[0]
+            re+= str(x.k) + ';'
+        return re
+    def __search__(self, k):
+        levels = self.l
+        update = [None]*levels
+        x = self.head
+         
+        for i in reversed(range(levels)):
+            while x.next_node[i] != None and x.next_node[i].k < k:
+                x = x.next_node[i]
+            update[i] = x
+             
+        return update
     
     def __getitem__(self, k):
-            
-        l_h = len(self.next_node)
+        updates= self.__search__(k)
         
-        current = self.next_node[l_h-1]
-        while(l_h>=0):
-            l_h-=1
-            if current.k == k: 
-                return current.v
-            elif current.k > k:
-                current = self.next_node[l_h-1]
-            else:
-                current = self.__helper(current,k,l_h)
-            
-        raise Exception("item not found")
+        if updates[0].k == k:
+            return updates[0].v
+        elif updates[0] is None or updates[0].next_node[0] is None or updates[0].next_node[0].k> k:
+            raise Exception("item not found")
+        else:
+            return updates[0].next_node[0].v
             
             
     
     
-    
-    
+    def __insert_node__(self,position,l,n_node):
+        next_n = position.next_node[l]
+        position.next_node[l] = n_node
+        n_node.next_node[l] = next_n
+        
     def __setitem__(self,k,v):
         self.__len__+=1
         ls = self.__len__ //2
-        if ls > self.l : self.l = ls
         level = 0
-  
-        for l in range(self.l,-1,-1):
+        for l in range(ls,-1,-1):
             if random.random() < (1/(pow(2,l))):
-                level = l
+                level = l+1
                 break
-   
-        n_node = ListNode(k,v,level+1)
-        for l in range(level+1):
-            self.__setbylevel___(l,n_node)
         
-    
-    def __setbylevel___(self,l,n_node):
-        if (l+1) > len(self.next_node):
-            self.next_node.append(n_node)
-        else:
+         
+        n_node = ListNode(k,v,level)
+        updates = self.__search__(k)
+        
+        levels = min(self.l,level)
+        
+        [self.__insert_node__(updates[l], l, n_node) for l in range(levels)]
+
+        if level > levels:
+            for l in range(levels, level):
+                self.head.next_node[l] = n_node
+                
             
-            if self.next_node[l].k > n_node.k:
-                n_node.next_node[l] = self.next_node[l]
-                self.next_node[l].pre_node[l] = n_node
-                self.next_node[l] = n_node 				
-            else:
-                current = self.__search_by_level(n_node.k, l)
-            
-                if current.k == n_node.k:
-                    current.v = n_node.v
-                else:
-                    
-                    next = current.next_node[l]
-                    n_node.pre_node[l] = current
-                    n_node.next_node[l] = next
-                    if next is not None:
-                        next.pre_node[l]= n_node
-                    current.next_node[l] = n_node
     
 
-    
 
     
 
         
 if __name__ == "__main__":
-    test = SkipList(5,'e')
-    print(test[5])
+    test = SkipList()
+    test[5] = 'e'
     for i in range(10):
         test[i] = 'a'
+        print(test)
     for i in range(10):
-        print (test[i])
+        print(test[i])
+    
 
 
 
